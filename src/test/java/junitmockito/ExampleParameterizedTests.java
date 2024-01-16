@@ -28,6 +28,7 @@ public class ExampleParameterizedTests {
     @ParameterizedTest
     @EnumSource(Day.class)
     void testWeekDay(Day day) {
+        if (day.isWeekDay())
         assertTrue(day.isWeekDay(), day + " should be a weekday.");
     }
     enum Day { MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY;

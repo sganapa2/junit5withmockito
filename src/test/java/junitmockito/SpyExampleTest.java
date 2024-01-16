@@ -38,7 +38,7 @@ public class SpyExampleTest {
 
     @Test
     public void testDataFromDb() {
-        //databaseServiceSpy = spy(new DatabaseService());
+        databaseServiceSpy = spy(new DatabaseService());
         employeeService = new EmployeeService(databaseServiceSpy);
         // Stubbing specific method in the spy
         when(databaseServiceSpy.query("input query")).thenReturn("Mocked result");
