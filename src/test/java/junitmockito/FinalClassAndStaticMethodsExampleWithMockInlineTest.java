@@ -31,11 +31,12 @@ public class FinalClassAndStaticMethodsExampleWithMockInlineTest {
 
     @Test
     public void testStaticMethod() {
-        MockedStatic<EmployeeService> mockedStaticEmployeeService = mockStatic(EmployeeService.class);
-        mockedStaticEmployeeService.when(EmployeeService::staticMethod).thenReturn(mockedResponseMessage);
-        String result = EmployeeService.staticMethod();
-        System.out.println("Result in test3: " + result);
-        assertEquals(mockedResponseMessage, result);
-        mockedStaticEmployeeService.verify(EmployeeService::staticMethod, times(1));
+        try(MockedStatic<EmployeeService> mockedStaticEmployeeService = mockStatic(EmployeeService.class)) {
+            mockedStaticEmployeeService.when(EmployeeService::staticMethod).thenReturn(mockedResponseMessage);
+            String result = EmployeeService.staticMethod();
+            System.out.println("Result in test3: " + result);
+            assertEquals(mockedResponseMessage, result);
+            mockedStaticEmployeeService.verify(EmployeeService::staticMethod, times(1));
+        }
     }
 }

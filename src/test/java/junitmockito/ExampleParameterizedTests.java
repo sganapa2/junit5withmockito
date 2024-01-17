@@ -29,7 +29,7 @@ public class ExampleParameterizedTests {
     @EnumSource(Day.class)
     void testWeekDay(Day day) {
         if (day.isWeekDay())
-        assertTrue(day.isWeekDay(), day + " should be a weekday.");
+            assertTrue(day.isWeekDay(), day + " should be a weekday.");
     }
     enum Day { MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY;
         boolean isWeekDay() {

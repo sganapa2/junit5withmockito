@@ -1,15 +1,24 @@
 package junitmockito;
 
 
+import lombok.val;
 import org.junit.jupiter.api.Test;
+import org.junit.mockito.DatabaseService;
+import org.junit.mockito.Employee;
+import org.junit.mockito.EmployeeService;
 import org.mockito.ArgumentCaptor;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 
 public class ArgumentCaptureExampleTest {
 
-        @Test
+
+    /*@Captor
+    private ArgumentCaptor<Employee> employeeArgCaptor;*/
+
+    @Test
         void testArgumentCapture() {
             // Create a mock of the ExampleClass
             ExampleClass mockExample = mock(ExampleClass.class);
@@ -36,5 +45,28 @@ public class ArgumentCaptureExampleTest {
             void exampleMethod(String strArg, int intArg) {
                 // Some implementation
             }
+        }
+
+
+        @Test
+        public void testDeleteEmployeeEntry() {
+            Employee employeeToDelete = getTestEmployee();
+            DatabaseService mockDBService = mock(DatabaseService.class);
+            ArgumentCaptor<Employee> employeeArgCaptor = ArgumentCaptor.forClass(Employee.class);
+            EmployeeService employeeServiceUnderTest = new EmployeeService(mockDBService);
+
+            employeeServiceUnderTest.deleteEmployeeEntry(employeeToDelete);
+            verify(mockDBService).deleteEmployee(employeeArgCaptor.capture());
+            val capturedEmployee = employeeArgCaptor.getValue();
+            assertEquals(1, capturedEmployee.getEmployeeId());
+            assertEquals("Sharad", capturedEmployee.getName());
+        }
+
+        private Employee getTestEmployee() {
+            Employee employeeToDelete = new Employee();
+            employeeToDelete.setEmployeeId(1);
+            employeeToDelete.setName("Sharad");
+            employeeToDelete.setSalary(100000);
+            return employeeToDelete;
         }
 }

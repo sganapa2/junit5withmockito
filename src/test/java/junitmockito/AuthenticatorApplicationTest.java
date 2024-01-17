@@ -40,7 +40,6 @@ public class AuthenticatorApplicationTest {
         verify(authenticatorMock, atLeastOnce()).authenticateUser(username, password);
         verify(authenticatorMock, atLeast(1)).authenticateUser(username, password);
         verify(authenticatorMock, atMost(1)).authenticateUser(username, password);
-
     }
 
     @Test

@@ -1,5 +1,6 @@
 package junitmockito;
 
+import org.hamcrest.core.IsCollectionContaining;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.mockito.DatabaseService;
@@ -9,6 +10,7 @@ import org.mockito.Spy;
 import java.util.HashMap;
 import java.util.Map;
 
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
@@ -47,7 +49,5 @@ public class SpyExampleTest {
         // Test the employee service logic without hitting the actual database
         // The query method of the spy will return the mocked result
         assertEquals("Mocked result", employeeService.getDataFromDB("input query"));
-
-
     }
 }

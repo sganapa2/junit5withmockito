@@ -34,4 +34,8 @@ public class EmployeeService {
         return databaseService.query(input);
     }
 
+    public void deleteEmployeeEntry(Employee employee) {
+        databaseService.deleteEmployee(employee);
+    }
+
 }

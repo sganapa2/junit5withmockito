@@ -1,12 +1,10 @@
 package org.junit.mockito;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 @ToString
 public class Employee {
     int employeeId;

@@ -1,10 +1,7 @@
 package junitmockito;
 
 
-import org.junit.jupiter.api.MethodOrderer;
-import org.junit.jupiter.api.Order;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestMethodOrder;
+import org.junit.jupiter.api.*;
 
 /**
  * When to Consider Test Ordering:
@@ -52,6 +49,7 @@ public class FileProcessorOrderedTestsExecutionExampleTest {
 
     @Test
     @Order(4)
+    //@Disabled // to disable/skip the test from execution
     void cleanupTestFiles() {
         // Test cleanup: Delete test files
         deleteFile(TEST_FILE_1);
